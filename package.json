@@ -1,0 +1,32 @@
+{
+  "name": "fishytrack",
+  "version": "1.0.0",
+  "description": "Fish tracker API",
+  "main": "start.js",
+  "scripts": {
+    "start": "nodemon ./start.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/1dv527/mp222si-examination-2.git"
+  },
+  "author": "Micael Persson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/1dv527/mp222si-examination-2/issues"
+  },
+  "homepage": "https://github.com/1dv527/mp222si-examination-2#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "dotenv": "^5.0.0",
+    "express": "^4.16.2",
+    "mongoose": "^5.0.4"
+  },
+  "devDependencies": {
+    "eslint": "^4.17.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "nodemon": "^1.14.12"
+  }
+}
