@@ -10,7 +10,8 @@ exports.getFishes = async (req, res) => {
 
 // send response with one fish
 exports.getFish = async (req, res) => {
-  res.json({ text: 'getfish' });
+  const fish = await Fish.findOne({ _id: req.params.id });
+  res.json(fish);
 };
 
 // save a new fish to db and send it in response
