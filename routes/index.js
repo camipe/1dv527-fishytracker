@@ -1,9 +1,9 @@
 const express = require('express');
 
+const fishController = require('../controllers/fishController');
+
 const router = express.Router();
 
-router.get('/', (req, res) => {
-  res.json({ Hello: 'World' });
-});
+router.post('/add', fishController.addFish);
 
 module.exports = router;

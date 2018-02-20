@@ -4,16 +4,16 @@ const mongoose = require('mongoose');
 require('dotenv').config({ path: 'variables.env' });
 
 // setup database connection
-console.log(process.env.DATABASE);
 mongoose.connect(process.env.DATABASE);
 mongoose.Promise = global.Promise;
 mongoose.connection.on('error', (err) => {
   console.error(`Error: ${err.message}`);
 });
 
-// TODO: import models
+// import models
+require('./models/Fish');
 
-// start our app!
+// start app!
 const app = require('./app');
 
 app.set('port', process.env.PORT || 8080);
