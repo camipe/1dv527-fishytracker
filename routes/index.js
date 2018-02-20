@@ -14,7 +14,7 @@ router.get('/fish/:id', catchErrors(fishController.getFish));
 // add fish
 router.post('/fish/add', catchErrors(fishController.addFish));
 
-// TODO: edit fish
+// edit fish
 router.patch('/fish/:id', catchErrors(fishController.editFish));
 
 // TODO: delete fish

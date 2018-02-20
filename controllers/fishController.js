@@ -35,5 +35,6 @@ exports.editFish = async (req, res) => {
 
 // delete fish
 exports.deleteFish = async (req, res) => {
-  res.json({ text: 'delete' });
+  await Fish.deleteOne({ _id: req.params.id });
+  res.json({ text: 'deleted' });
 };
