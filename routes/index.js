@@ -12,7 +12,7 @@ router.get('/fishes', catchErrors(fishController.getFishes));
 router.get('/fish/:id', catchErrors(fishController.getFish));
 
 // add fish
-router.post('/add', catchErrors(fishController.addFish));
+router.post('/fish/add', catchErrors(fishController.addFish));
 
 // TODO: edit fish
 router.patch('/fish/:id', catchErrors(fishController.editFish));

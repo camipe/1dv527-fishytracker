@@ -4,7 +4,8 @@ const Fish = mongoose.model('Fish');
 
 // send response with all fishes
 exports.getFishes = async (req, res) => {
-  res.json({ text: 'getfishes' });
+  const fishes = await Fish.find();
+  res.json(fishes);
 };
 
 // send response with one fish

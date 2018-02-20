@@ -17,6 +17,7 @@ const fishSchema = new mongoose.Schema({
     type: Number,
     required: 'Please enter a store name',
   },
+  // coordinates [lng, lat]
   location: {
     type: {
       type: String,
