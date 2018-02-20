@@ -24,7 +24,13 @@ exports.addFish = async (req, res) => {
 
 // edit a fish in db and send updated version in response
 exports.editFish = async (req, res) => {
-  res.json({ text: 'edit' });
+  const fish = await Fish.findByIdAndUpdate({ _id: req.params.id }, req.body, {
+    new: true,
+    runValidators: true,
+  }).exec();
+
+
+  res.json(fish);
 };
 
 // delete fish
