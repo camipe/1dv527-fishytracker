@@ -9,15 +9,15 @@ const router = express.Router();
 router.get('/fishes', catchErrors(fishController.getFishes));
 
 // show fish details
-router.get('/fish/:id', catchErrors(fishController.getFish));
+router.get('/fishes/:id', catchErrors(fishController.getFish));
 
 // add fish
-router.post('/fish/add', catchErrors(fishController.addFish));
+router.post('/fishes/add', catchErrors(fishController.addFish));
 
 // edit fish
-router.patch('/fish/:id', catchErrors(fishController.editFish));
+router.put('/fishes/:id', catchErrors(fishController.editFish));
 
-// TODO: delete fish
+// delete fish
 router.delete('/fish/:id', catchErrors(fishController.deleteFish));
 
 module.exports = router;
