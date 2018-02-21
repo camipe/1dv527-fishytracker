@@ -11,7 +11,8 @@ exports.getFishes = async (req, res) => {
 // send response with one fish
 exports.getFish = async (req, res) => {
   const fish = await Fish.findOne({ _id: req.params.id });
-  res.json(fish);
+
+  res.json(fish.toJson());
 };
 
 // save a new fish to db and send it in response
@@ -28,8 +29,6 @@ exports.editFish = async (req, res) => {
     new: true,
     runValidators: true,
   }).exec();
-
-
   res.json(fish);
 };
 

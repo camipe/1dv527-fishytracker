@@ -36,4 +36,19 @@ const fishSchema = new mongoose.Schema({
   tags: [String],
 });
 
+fishSchema.methods.toJson = function convertToHATEOAS() {
+  return {
+    species: this.species,
+    weight: this.weight,
+    length: this.length,
+    description: this.description,
+    imageUrl: this.imageUrl,
+    tags: this.tags,
+    links: {
+      link1: 'www.google.se',
+      link2: 'lnk.se',
+    },
+  };
+};
+
 module.exports = mongoose.model('Fish', fishSchema);
