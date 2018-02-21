@@ -13,7 +13,7 @@ mongoose.connection.on('error', (err) => {
 // import models
 require('./models/Fish');
 
-// seed db
+// resets and seed db
 require('./helpers/seed');
 
 // start app!
