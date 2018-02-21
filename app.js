@@ -2,6 +2,9 @@ const express = require('express');
 const routes = require('./routes/index');
 const bodyParser = require('body-parser');
 const errorManager = require('./helpers/errorManager');
+const jwt = require('jsonwebtoken');
+const passport = require('passport');
+const morgan = require('morgan');
 
 // create app
 const app = express();

@@ -20,5 +20,8 @@ router.put('/fishes/:id', catchErrors(fishController.editFish));
 // delete fish
 router.delete('/fish/:id', catchErrors(fishController.deleteFish));
 
+// authenticate
+router.post('/auth');
+
 module.exports = router;
 

@@ -3,7 +3,11 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
 const fishSchema = new mongoose.Schema({
-  user: String,
+  user: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'User',
+    required: 'You must supply an user!',
+  },
   species: {
     type: String,
     trim: true,
@@ -16,6 +20,10 @@ const fishSchema = new mongoose.Schema({
   length: {
     type: Number,
     required: 'Please enter a length',
+  },
+  created: {
+    type: Date,
+    default: Date.now,
   },
   // coordinates [lng, lat]
   location: {

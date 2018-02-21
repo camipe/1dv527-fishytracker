@@ -11,6 +11,7 @@ mongoose.connection.on('error', (err) => {
 });
 
 // import models
+require('./models/User');
 require('./models/Fish');
 
 // resets and seed db
