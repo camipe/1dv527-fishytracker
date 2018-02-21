@@ -7,15 +7,15 @@ const fishSchema = new mongoose.Schema({
   species: {
     type: String,
     trim: true,
-    required: 'Please enter a store name',
+    required: 'Please enter a species',
   },
   weight: {
     type: Number,
-    required: 'Please enter a store name',
+    required: 'Please enter a weight',
   },
   length: {
     type: Number,
-    required: 'Please enter a store name',
+    required: 'Please enter a length',
   },
   // coordinates [lng, lat]
   location: {
