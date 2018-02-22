@@ -3,9 +3,19 @@ const passport = require('passport');
 
 const fishController = require('../controllers/fishController');
 const authController = require('../controllers/authController');
+const userController = require('../controllers/userController');
 const { catchErrors } = require('../helpers/errorManager');
 
 const router = express.Router();
+
+// list all users
+router.get('/users', catchErrors(userController.getUsers));
+
+// show user detail
+router.get('/users/:id', catchErrors(userController.getUser));
+
+// show user's fishes
+router.get('/users/:id/fishes', catchErrors(fishController.getUserFishes));
 
 // list all fishes
 router.get('/fishes', catchErrors(fishController.getFishes));

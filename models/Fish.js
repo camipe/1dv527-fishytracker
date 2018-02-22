@@ -47,6 +47,7 @@ const fishSchema = new mongoose.Schema({
 // takes the server url as an argument so it can set the links dynamically
 fishSchema.methods.toJson = function convertToHATEOAS(serverURL) {
   return {
+    _id: this._id,
     species: this.species,
     weight: this.weight,
     length: this.length,
@@ -54,9 +55,10 @@ fishSchema.methods.toJson = function convertToHATEOAS(serverURL) {
     imageUrl: this.imageUrl,
     tags: this.tags,
     location: this.location,
+    created: this.created,
     links: {
       self: `http://${serverURL}/fishes/${this._id}`,
-      user: `http://${serverURL}/users/Steve`,
+      user: `http://${serverURL}/users/${this.user}`,
     },
   };
 };

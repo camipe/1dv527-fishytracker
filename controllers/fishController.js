@@ -5,7 +5,15 @@ const Fish = mongoose.model('Fish');
 
 // send response with all fishes
 exports.getFishes = async (req, res) => {
-  const fishes = await Fish.find();
+  let fishes = await Fish.find();
+  fishes = fishes.map(fish => fish.toJson(req.headers.host));
+  res.json(fishes);
+};
+
+// send response with all fishes belonging to one user
+exports.getUserFishes = async (req, res) => {
+  let fishes = await Fish.find({ user: req.params.id });
+  fishes = fishes.map(fish => fish.toJson(req.headers.host));
   res.json(fishes);
 };
 
@@ -24,7 +32,7 @@ exports.addFish = async (req, res) => {
 
   await fish.save();
 
-  res.json(fish);
+  res.json(fish.toJson(req.headers.host));
 };
 
 // edit a fish in db and send updated version in response
@@ -33,7 +41,7 @@ exports.editFish = async (req, res) => {
     new: true,
     runValidators: true,
   }).exec();
-  res.json(fish);
+  res.json(fish.toJson(req.headers.host));
 };
 
 // delete fish

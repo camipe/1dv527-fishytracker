@@ -9,13 +9,26 @@ const userSchema = new mongoose.Schema({
     required: 'Please supply a name',
     trim: true,
   },
+  created: {
+    type: Date,
+    default: Date.now,
+  },
+}, {
+  toJSON: { virtuals: true },
+  toObject: { virtuals: true },
 });
 
-userSchema.virtual('fishes', {
-  ref: 'Fish',
-  localField: '_id',
-  foreignField: 'user',
-});
+userSchema.methods.toJson = function convertToHATEOAS(serverURL) {
+  return {
+    _id: this._id,
+    name: this.name,
+    created: this.created,
+    links: {
+      self: `http://${serverURL}/users/${this._id}`,
+      fishes: `http://${serverURL}/users/${this._id}/fishes`,
+    },
+  };
+};
 
 // https://github.com/saintedlama/passport-local-mongoose/issues/218
 userSchema.statics.registerAsync = function registerAsync(data, password) {
