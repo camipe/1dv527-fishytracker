@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+const User = mongoose.model('User');
 const Fish = mongoose.model('Fish');
 
 // send response with all fishes
@@ -18,6 +19,9 @@ exports.getFish = async (req, res) => {
 // save a new fish to db and send it in response
 exports.addFish = async (req, res) => {
   const fish = new Fish(req.body);
+  const user = await User.findOne({ email: 'tester@web.com' });
+  fish.user = user._id;
+
   await fish.save();
 
   res.json(fish);

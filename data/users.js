@@ -1,5 +1,6 @@
 exports.sample = {
-  email: 'tester@web.com',
+  username: 'admin',
+  password: 'Test.123',
   name: 'Tester',
 };
 

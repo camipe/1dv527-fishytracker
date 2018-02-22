@@ -1,15 +1,9 @@
 const mongoose = require('mongoose');
+const passportLocalMongoose = require('passport-local-mongoose');
 
 mongoose.Promise = global.Promise;
 
 const userSchema = new mongoose.Schema({
-  email: {
-    type: String,
-    unique: true,
-    lowercase: true,
-    trim: true,
-    required: 'Please supply an email address',
-  },
   name: {
     type: String,
     required: 'Please supply a name',
@@ -22,5 +16,17 @@ userSchema.virtual('fishes', {
   localField: '_id',
   foreignField: 'user',
 });
+
+// https://github.com/saintedlama/passport-local-mongoose/issues/218
+userSchema.statics.registerAsync = function registerAsync(data, password) {
+  return new Promise((resolve, reject) => {
+    this.register(data, password, (err, user) => {
+      if (err) return reject(err);
+      return resolve(user);
+    });
+  });
+};
+
+userSchema.plugin(passportLocalMongoose);
 
 module.exports = mongoose.model('User', userSchema);

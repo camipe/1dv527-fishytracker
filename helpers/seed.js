@@ -16,11 +16,11 @@ async function seedDatabase() {
     // insert new data
     console.log('Inserting data.');
 
-    const user = new User(users.sample);
+    const user = await User.registerAsync(users.sample, users.sample.password);
     console.log(user);
-    await user.save();
 
-    const fishesWithUser = fishes.sample.map((fish) => {
+    const fishesWithUser = fishes.sample.map((e) => {
+      const fish = e;
       fish.user = user._id;
       return fish;
     });

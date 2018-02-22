@@ -1,6 +1,7 @@
 const express = require('express');
 
 const fishController = require('../controllers/fishController');
+const authController = require('../controllers/authController');
 const { catchErrors } = require('../helpers/errorManager');
 
 const router = express.Router();
@@ -12,7 +13,7 @@ router.get('/fishes', catchErrors(fishController.getFishes));
 router.get('/fishes/:id', catchErrors(fishController.getFish));
 
 // add fish
-router.post('/fishes/add', catchErrors(fishController.addFish));
+router.post('/fishes/', catchErrors(fishController.addFish));
 
 // edit fish
 router.put('/fishes/:id', catchErrors(fishController.editFish));
@@ -21,7 +22,7 @@ router.put('/fishes/:id', catchErrors(fishController.editFish));
 router.delete('/fish/:id', catchErrors(fishController.deleteFish));
 
 // authenticate
-router.post('/auth');
+router.post('/login', catchErrors(authController.login));
 
 module.exports = router;
 
