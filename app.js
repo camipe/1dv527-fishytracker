@@ -3,8 +3,7 @@ const routes = require('./routes/index');
 const bodyParser = require('body-parser');
 const errorManager = require('./helpers/errorManager');
 const passport = require('passport');
-const passportJWT = require("passport-jwt");
-const jwt = require('jsonwebtoken');
+const passportJWT = require('passport-jwt');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 

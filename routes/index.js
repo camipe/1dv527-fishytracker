@@ -17,10 +17,10 @@ router.get('/fishes/:id', catchErrors(fishController.getFish));
 router.post('/fishes/', passport.authenticate('jwt', { session: false }), catchErrors(fishController.addFish));
 
 // edit fish
-router.put('/fishes/:id', catchErrors(fishController.editFish));
+router.put('/fishes/:id', passport.authenticate('jwt', { session: false }), catchErrors(fishController.editFish));
 
 // delete fish
-router.delete('/fish/:id', catchErrors(fishController.deleteFish));
+router.delete('/fish/:id', passport.authenticate('jwt', { session: false }), catchErrors(fishController.deleteFish));
 
 // authenticate
 router.post('/login', passport.authenticate('local'), catchErrors(authController.login));
