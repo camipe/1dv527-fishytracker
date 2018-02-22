@@ -57,8 +57,8 @@ fishSchema.methods.toJson = function convertToHATEOAS(serverURL) {
     location: this.location,
     created: this.created,
     links: {
-      self: `http://${serverURL}/fishes/${this._id}`,
-      user: `http://${serverURL}/users/${this.user}`,
+      self: `http://${serverURL}/api/v1/fishes/${this._id}`,
+      user: `http://${serverURL}/api/v1/users/${this.user}`,
     },
   };
 };

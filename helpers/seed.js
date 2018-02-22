@@ -15,19 +15,29 @@ async function seedDatabase() {
 
     console.log('Inserting data.');
 
-    // create user
-    const user = await User.registerAsync(users.sample, users.sample.password);
+    // create users
+    const admin = await User.registerAsync(users.sample[0], users.sample[0].password);
+    const user = await User.registerAsync(users.sample[1], users.sample[1].password);
     console.log(user);
 
-    // relate user to all fishes
-    const fishesWithUser = fishes.sample.map((e) => {
+    // admin fishes
+    const adminFishes = fishes.sample[0].map((e) => {
+      const fish = e;
+      fish.user = admin._id;
+      return fish;
+    });
+
+    // user fishes
+    const userFishes = fishes.sample[1].map((e) => {
       const fish = e;
       fish.user = user._id;
       return fish;
     });
 
     // insert fishes in db
-    await Fish.insertMany(fishesWithUser);
+    await Fish.insertMany(adminFishes);
+    await Fish.insertMany(userFishes);
+
     console.log('Data insert successful.');
   } catch (error) {
     console.log({

@@ -27,6 +27,7 @@ exports.getFish = async (req, res) => {
 // save a new fish to db and send it in response
 exports.addFish = async (req, res) => {
   const fish = new Fish(req.body);
+  // all fishes gets added to the admin user, future fix is to make this dynamic based on token.
   const user = await User.findOne({ username: 'admin' });
   fish.user = user._id;
 
@@ -36,6 +37,7 @@ exports.addFish = async (req, res) => {
 };
 
 // edit a fish in db and send updated version in response
+// future enhancement is to make it so only fish owner/user can edit it.
 exports.editFish = async (req, res) => {
   const fish = await Fish.findByIdAndUpdate({ _id: req.params.id }, req.body, {
     new: true,

@@ -1,6 +1,5 @@
 exports.sample = [
-  {
-    user: 'Micael',
+  [{
     species: 'Marlin',
     weight: 23000,
     length: 500,
@@ -12,7 +11,6 @@ exports.sample = [
     },
   },
   {
-    user: 'Micael',
     species: 'Bass',
     weight: 14000,
     length: 300,
@@ -22,9 +20,8 @@ exports.sample = [
     location: {
       coordinates: [-74.3879824, 43.7489954],
     },
-  },
-  {
-    user: 'Micael',
+  }],
+  [{
     species: 'Pike',
     weight: 13700,
     length: 325,
@@ -36,7 +33,6 @@ exports.sample = [
     },
   },
   {
-    user: 'Micael',
     species: 'Cod',
     weight: 8300,
     length: 167,
@@ -48,7 +44,6 @@ exports.sample = [
     },
   },
   {
-    user: 'Micael',
     species: 'Trout',
     weight: 6700,
     length: 144,
@@ -60,7 +55,6 @@ exports.sample = [
     },
   },
   {
-    user: 'Micael',
     species: 'Angler',
     weight: 5400,
     length: 168,
@@ -72,7 +66,6 @@ exports.sample = [
     },
   },
   {
-    user: 'Micael',
     species: 'Catfish',
     weight: 67000,
     length: 850,
@@ -82,5 +75,5 @@ exports.sample = [
     location: {
       coordinates: [-74.3879824, 43.7489954],
     },
-  },
+  }],
 ];

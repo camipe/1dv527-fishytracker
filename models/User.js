@@ -4,6 +4,7 @@ const passportLocalMongoose = require('passport-local-mongoose');
 mongoose.Promise = global.Promise;
 
 const userSchema = new mongoose.Schema({
+  email: String,
   name: {
     type: String,
     required: 'Please supply a name',
@@ -24,8 +25,8 @@ userSchema.methods.toJson = function convertToHATEOAS(serverURL) {
     name: this.name,
     created: this.created,
     links: {
-      self: `http://${serverURL}/users/${this._id}`,
-      fishes: `http://${serverURL}/users/${this._id}/fishes`,
+      self: `http://${serverURL}/api/v1/users/${this._id}`,
+      fishes: `http://${serverURL}/api/v1/users/${this._id}/fishes`,
     },
   };
 };
