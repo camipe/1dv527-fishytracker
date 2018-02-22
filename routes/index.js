@@ -14,7 +14,7 @@ router.get('/fishes', catchErrors(fishController.getFishes));
 router.get('/fishes/:id', catchErrors(fishController.getFish));
 
 // add fish
-router.post('/fishes/', catchErrors(fishController.addFish));
+router.post('/fishes/', passport.authenticate('jwt', { session: false }), catchErrors(fishController.addFish));
 
 // edit fish
 router.put('/fishes/:id', catchErrors(fishController.editFish));

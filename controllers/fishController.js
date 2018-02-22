@@ -19,7 +19,7 @@ exports.getFish = async (req, res) => {
 // save a new fish to db and send it in response
 exports.addFish = async (req, res) => {
   const fish = new Fish(req.body);
-  const user = await User.findOne({ email: 'tester@web.com' });
+  const user = await User.findOne({ username: 'admin' });
   fish.user = user._id;
 
   await fish.save();
