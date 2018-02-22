@@ -30,7 +30,7 @@ router.post('/fishes/', passport.authenticate('jwt', { session: false }), catchE
 router.put('/fishes/:id', passport.authenticate('jwt', { session: false }), catchErrors(fishController.editFish));
 
 // delete fish
-router.delete('/fish/:id', passport.authenticate('jwt', { session: false }), catchErrors(fishController.deleteFish));
+router.delete('/fishes/:id', passport.authenticate('jwt', { session: false }), catchErrors(fishController.deleteFish));
 
 // authenticate
 router.post('/login', passport.authenticate('local'), catchErrors(authController.login));

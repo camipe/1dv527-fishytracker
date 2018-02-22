@@ -1,0 +1,350 @@
+{
+	"info": {
+		"name": "Fishytracker",
+		"_postman_id": "f4bbdb7d-5331-f434-b9f1-298d9ec373cb",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1. Login",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "d8b1eec7-d3a6-41eb-8ee8-f918e2f4e6bc",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "f4dfdf7c-0297-4910-8555-7179b431f29a",
+						"type": "text/javascript",
+						"exec": [
+							"// save bearer token for future requests",
+							"const res = pm.response.json();",
+							"const bearerToken = res.token;",
+							"pm.globals.set(\"bearerToken\", bearerToken);",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\": \"admin\",\n\t\"password\": \"Test.123\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"login"
+					]
+				},
+				"description": "Must be run first to login and get token"
+			},
+			"response": []
+		},
+		{
+			"name": "2. Get Users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "08492dd2-cb73-41f7-b977-45cf6f15147f",
+						"type": "text/javascript",
+						"exec": [
+							"// save the id of one user for future use",
+							"const res = pm.response.json();",
+							"const user = res[0];",
+							"pm.globals.set(\"exampleUserId\", user._id);",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/users/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"users",
+						""
+					]
+				},
+				"description": "Run this second to save user id for Get User and Get User's fishes."
+			},
+			"response": []
+		},
+		{
+			"name": "3. Get Fishes",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0d272631-d297-409c-bab5-c17fa0b129cc",
+						"type": "text/javascript",
+						"exec": [
+							"// save the id of one fish for future use",
+							"const res = pm.response.json();",
+							"const fish = res[1];",
+							"pm.globals.set(\"exampleFishId\", fish._id);",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/fishes/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"fishes",
+						""
+					]
+				},
+				"description": "Must be run third to get fish id for Get Fish, Edit Fish and Delete fish."
+			},
+			"response": []
+		},
+		{
+			"name": "Get User",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/users/{{exampleUserId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"{{exampleUserId}}"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get Fish",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/fishes/{{exampleFishId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"fishes",
+						"{{exampleFishId}}"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get User's fishes",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/users/{{exampleUserId}}/fishes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"{{exampleUserId}}",
+						"fishes"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Add Fish",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{bearerToken}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"species\": \"Tigerfish\",\n  \"weight\": 100,\n  \"length\": 300,\n  \"imageUrl\": \"instagram.com\",\n  \"description\": \"Large fish that live in the jungle\",\n  \"tags\": [\"large\", \"ocean\"],\n\t\"location\": {\n\t\t\"coordinates\":[-74.3879824, 43.7489954]\n  }\n}\n"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/fishes/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"fishes",
+						""
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Edit Fish",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{bearerToken}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"species\": \"Whale shark\",\n  \"weight\": 100,\n  \"length\": 300,\n  \"imageUrl\": \"instagram.com\",\n  \"description\": \"oOOOOOoOUOUOUoUOououo\",\n  \"tags\": [\"large\", \"ocean\"],\n\t\"location\": {\n\t\t\"coordinates\":[-74.3879824, 43.7489954]\n  }\n}\n\n"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/fishes/{{exampleFishId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"fishes",
+						"{{exampleFishId}}"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Fish",
+			"request": {
+				"auth": {
+					"type": "bearer"
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{bearerToken}}"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/fishes/{{exampleFishId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"fishes",
+						"{{exampleFishId}}"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
