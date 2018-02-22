@@ -27,6 +27,15 @@ userSchema.statics.registerAsync = function registerAsync(data, password) {
   });
 };
 
+userSchema.statics.authenticateAsync = function authenticateAsync(data, password) {
+  return new Promise((resolve, reject) => {
+    this.authenticate(data, password, (err, user) => {
+      if (err) return reject(err);
+      return resolve(user);
+    });
+  });
+};
+
 userSchema.plugin(passportLocalMongoose);
 
 module.exports = mongoose.model('User', userSchema);

@@ -13,18 +13,20 @@ async function seedDatabase() {
     await Fish.remove();
     console.log('Done, database is empty!');
 
-    // insert new data
     console.log('Inserting data.');
 
+    // create user
     const user = await User.registerAsync(users.sample, users.sample.password);
     console.log(user);
 
+    // relate user to all fishes
     const fishesWithUser = fishes.sample.map((e) => {
       const fish = e;
       fish.user = user._id;
       return fish;
     });
 
+    // insert fishes in db
     await Fish.insertMany(fishesWithUser);
     console.log('Data insert successful.');
   } catch (error) {
@@ -34,5 +36,4 @@ async function seedDatabase() {
     });
   }
 }
-
 seedDatabase();
