@@ -6,6 +6,7 @@ const passport = require('passport');
 const passportJWT = require('passport-jwt');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 const User = mongoose.model('User');
 
@@ -41,6 +42,9 @@ const jwtStrategy = new passportJWT.Strategy(jwtOptions, async (payload, next) =
   }
 });
 passport.use(jwtStrategy);
+
+// enable cors from all origins
+app.use(cors());
 
 // setup routes
 app.use('/api/v1', routes);
