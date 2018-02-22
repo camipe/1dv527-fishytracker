@@ -9,4 +9,4 @@ yarn-error.log*
 node_modules/
 
 # dotenv environment variables file
-variables.env
+# variables.env
