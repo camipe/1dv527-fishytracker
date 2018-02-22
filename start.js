@@ -11,6 +11,7 @@ mongoose.connection.on('error', (err) => {
 });
 
 // import models
+require('./models/Hook');
 require('./models/User');
 require('./models/Fish');
 

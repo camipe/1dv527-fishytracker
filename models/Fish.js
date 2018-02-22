@@ -1,4 +1,7 @@
 const mongoose = require('mongoose');
+const axios = require('axios');
+
+const Hook = mongoose.model('Hook');
 
 mongoose.Promise = global.Promise;
 
@@ -62,5 +65,16 @@ fishSchema.methods.toJson = function convertToHATEOAS(serverURL) {
     },
   };
 };
+
+fishSchema.post('save', async (fish) => {
+  try {
+    const hooks = await Hook.find();
+    hooks.forEach(async (hook) => {
+      await axios.post(hook.url, fish);
+    });
+  } catch (error) {
+    console.log(error);
+  }
+});
 
 module.exports = mongoose.model('Fish', fishSchema);

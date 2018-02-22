@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const User = mongoose.model('User');
+const Hook = mongoose.model('Hook');
 
 // send response with all users
 exports.getUsers = async (req, res) => {
@@ -14,4 +15,12 @@ exports.getUser = async (req, res) => {
   const user = await User.findOne({ _id: req.params.id });
 
   res.json(user.toJson(req.headers.host));
+};
+
+exports.addHook = async (req, res) => {
+  const hook = new Hook(req.body);
+  console.log(hook);
+  await hook.save();
+
+  res.json(hook);
 };

@@ -35,5 +35,8 @@ router.delete('/fishes/:id', passport.authenticate('jwt', { session: false }), c
 // authenticate
 router.post('/login', passport.authenticate('local'), catchErrors(authController.login));
 
+// create hook
+router.post('/hook', passport.authenticate('jwt', { session: false }), catchErrors(userController.addHook));
+
 module.exports = router;
 

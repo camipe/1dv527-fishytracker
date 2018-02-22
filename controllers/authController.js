@@ -5,6 +5,4 @@ exports.login = async (req, res) => {
   const payload = { id: req.user._id };
   const token = jwt.sign(payload, process.env.SECRET);
   res.json({ message: 'ok', token });
-  // return token
-  res.json({ success: true });
 };

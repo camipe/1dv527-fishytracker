@@ -4,6 +4,7 @@ const fishes = require('../data/fishes');
 
 const User = mongoose.model('User');
 const Fish = mongoose.model('Fish');
+const Hook = mongoose.model('Hook');
 
 async function seedDatabase() {
   try {
@@ -11,6 +12,7 @@ async function seedDatabase() {
     console.log('Dumping current data.');
     await User.remove();
     await Fish.remove();
+    await Hook.remove();
     console.log('Done, database is empty!');
 
     console.log('Inserting data.');
@@ -18,7 +20,6 @@ async function seedDatabase() {
     // create users
     const admin = await User.registerAsync(users.sample[0], users.sample[0].password);
     const user = await User.registerAsync(users.sample[1], users.sample[1].password);
-    console.log(user);
 
     // admin fishes
     const adminFishes = fishes.sample[0].map((e) => {
