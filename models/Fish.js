@@ -66,6 +66,8 @@ fishSchema.methods.toJson = function convertToHATEOAS(serverURL) {
   };
 };
 
+// each time a fish is saved, server makes a post to all hook URLs
+// TODO: make sure this doesn't happen on edit.
 fishSchema.post('save', async (fish) => {
   try {
     const hooks = await Hook.find();
